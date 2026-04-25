@@ -1,0 +1,15 @@
+name: PR Security Scans
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  scans:
+    uses: VK-Paints/vkpaints-workflow/.github/workflows/pr-scans.yml@main
+    with:
+      service_name: order-service
+    secrets:
+      SONAR_TOKEN: ${ secrets.SONAR_TOKEN }
+      SNYK_TOKEN: ${ secrets.SNYK_TOKEN }
+      SMTP_USERNAME: ${ secrets.SMTP_USERNAME }
+      SMTP_PASSWORD: ${ secrets.SMTP_PASSWORD }
+      SLACK_WEBHOOK: ${ secrets.SLACK_WEBHOOK }

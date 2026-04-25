@@ -1,10 +1,10 @@
-name: Production Release
+name: Dev Build & Push
 on:
-  release:
-    types: [ published ]
+  push:
+    branches: [ main ]
 jobs:
-  release:
-    uses: VK-Paints/vkpaints-workflow/.github/workflows/build-push-release.yml@main
+  build:
+    uses: VK-Paints/vkpaints-workflow/.github/workflows/build-push-dev.yml@main
     with:
       service_name: order-service
     secrets:
