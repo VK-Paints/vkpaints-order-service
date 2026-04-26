@@ -1,11 +1,9 @@
-﻿name: VK-Paints CI/CD
+﻿name: 🚀 CI Prod Pipeline
 on:
-  pull_request:
-    branches: [ main ]
   push:
     branches: [ main ]
 jobs:
-  pipeline:
+  prod:
     uses: VK-Paints/vkpaints-workflow/.github/workflows/unified-pipeline.yml@main
     with:
       service_name: order-service
