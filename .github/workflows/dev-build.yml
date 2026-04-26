@@ -1,4 +1,4 @@
-name: Dev Build & Push
+﻿name: Dev Build & Push
 on:
   push:
     branches: [ main ]
@@ -10,5 +10,10 @@ jobs:
       security-events: write
     uses: VK-Paints/vkpaints-workflow/.github/workflows/build-push-dev.yml@main
     with:
-      service_name: order-service
+
+      smtp_server: ${{ vars.SMTP_SERVER }}
+      smtp_port: ${{ vars.SMTP_PORT }}
+      mail_from: ${{ vars.MAIL_FROM }}
+
     secrets: inherit
+
