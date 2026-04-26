@@ -1,10 +1,10 @@
-﻿name: 🚀 CI Prod Pipeline
+name: ?? CI Prod Pipeline
 on:
   push:
     branches: [ main ]
 jobs:
   prod:
-    uses: VK-Paints/vkpaints-workflow/.github/workflows/unified-pipeline.yml@main
+    uses: VK-Paints/vkpaints-workflow/.github/workflows/reusable-ci-prod.yml@main
     with:
       service_name: order-service
       smtp_server: ${{ vars.SMTP_SERVER }}
