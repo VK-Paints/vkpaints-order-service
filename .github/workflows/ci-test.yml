@@ -1,4 +1,4 @@
-﻿name: ?? CI Test Pipeline
+﻿name: CI Test Pipeline
 on:
   pull_request:
     branches: [ main ]
@@ -11,4 +11,5 @@ jobs:
       smtp_port: ${{ vars.SMTP_PORT }}
       mail_from: ${{ vars.MAIL_FROM }}
     secrets: inherit
+
 
