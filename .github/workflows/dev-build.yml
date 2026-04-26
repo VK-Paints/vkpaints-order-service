@@ -7,8 +7,4 @@ jobs:
     uses: VK-Paints/vkpaints-workflow/.github/workflows/build-push-dev.yml@main
     with:
       service_name: order-service
-    secrets:
-      ORG_GH_TOKEN: ${ secrets.ORG_GH_TOKEN }
-      SMTP_USERNAME: ${ secrets.SMTP_USERNAME }
-      SMTP_PASSWORD: ${ secrets.SMTP_PASSWORD }
-      SLACK_WEBHOOK: ${ secrets.SLACK_WEBHOOK }
+    secrets: inherit
