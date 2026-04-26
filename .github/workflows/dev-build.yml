@@ -4,6 +4,10 @@ on:
     branches: [ main ]
 jobs:
   build:
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
     uses: VK-Paints/vkpaints-workflow/.github/workflows/build-push-dev.yml@main
     with:
       service_name: order-service
