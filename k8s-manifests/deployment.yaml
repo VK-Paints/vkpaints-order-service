@@ -12,10 +12,24 @@ spec:
       labels:
         app: order-service
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: order-service
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: order-container
-        image: shubha20/vk-paints_order-service:v1.0.0
+        image: ghcr.io/vk-paints/vkpaints-order-service:v1.0.0
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
         envFrom:
         - configMapRef:
             name: order-config
@@ -34,5 +48,6 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 10
 
+        ports:
         - containerPort: 3000
 
