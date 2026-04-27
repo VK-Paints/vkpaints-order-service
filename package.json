@@ -12,6 +12,6 @@
     "sequelize": "^6.33.0",
     "amqplib": "^0.10.3",
     "jsonwebtoken": "^9.0.2",
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^2.4.3",`r`n    "prom-client": "^15.1.0"
   }
 }
