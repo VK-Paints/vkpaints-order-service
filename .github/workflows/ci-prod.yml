@@ -1,15 +1,30 @@
-﻿name: CI Prod Pipeline
+name: CI Prod Pipeline
 on:
   push:
     branches: [ main ]
+  release:
+    types: [ created ]
+
 jobs:
-  prod:
+  validate:
+    if: github.event_name == 'push'
     uses: VK-Paints/vkpaints-workflow/.github/workflows/reusable-ci-prod.yml@main
     with:
       service_name: order-service
       smtp_server: ${{ vars.SMTP_SERVER }}
       smtp_port: ${{ vars.SMTP_PORT }}
       mail_from: ${{ vars.MAIL_FROM }}
+      publish: false
     secrets: inherit
 
-
+  release:
+    if: github.event_name == 'release'
+    uses: VK-Paints/vkpaints-workflow/.github/workflows/reusable-ci-prod.yml@main
+    with:
+      service_name: order-service
+      smtp_server: ${{ vars.SMTP_SERVER }}
+      smtp_port: ${{ vars.SMTP_PORT }}
+      mail_from: ${{ vars.MAIL_FROM }}
+      publish: true
+      image_tag: ${{ github.event.release.tag_name }}
+    secrets: inherit
