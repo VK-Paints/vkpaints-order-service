@@ -1,6 +1,15 @@
-FROM node:18-alpine
+# Stage 1: Build
+FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --omit=dev
+
+# Stage 2: Production
+FROM node:20-alpine
+WORKDIR /app
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+COPY --from=build /app/node_modules ./node_modules
 COPY . .
-CMD ["npm", "start"]
+RUN chown -R appuser:appgroup /app
+USER appuser
+CMD ["node", "index.js"]
